@@ -1,0 +1,21 @@
+version: '2.4'
+
+services:
+  robot: 
+    #Make an image from this current package
+    build: .
+    image: george0506/leg_kilo_fusion:v1
+
+    #Container parameters
+    container_name: unitree_robot_fusion
+    network_mode: host
+
+    #Compose don't have -it so we make this flags
+    stdin_open: true #analog -i (interactive)
+    tty: true #analot -t
+
+    #Shared folders
+    volumes:
+    - /home/stringer/Bagfiles/LegKilo:/root/catkin_ws/bags 
+    
+    command: bash
